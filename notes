@@ -27,3 +27,23 @@ function readVal(keyString, split) {
 
   return valueIActuallyFreakingWant;
 }
+
+
+ // test tweet id: 1163767919190454272
+  // function testAPI(tweetID) {
+  //   fetch(`https://api.twitter.com/1.1/statuses/show.json?id=${tweetID}`, {
+  //     method: "GET",
+  //     mode: "no-cors",
+  //     credentials: "include",
+  //     headers: {
+  //       Authorization:
+  //         "Bearer AAAAAAAAAAAAAAAAAAAAAOhU% 2FgAAAAAAOommBQrmFMmuKX1B5xj2RdN% 2Fc7g % 3DBoLa0hJimDvFXAcnY36Rcs7T4idOP5g6Xr2h7F5lMHOv4m5whl"
+  //     }
+  //   })
+  //     .then(res => console.log(res) || true || res.json())
+  //     //     .then(resJson => {
+  //     //       testTweet = resJson;
+  //     //       console.log("testtweet", testTweet);
+  //     //     })
+  //     .catch(err => console.log("ERROR", err));
+  // }
