@@ -28,22 +28,35 @@ app.get("/alltweets", (req, res) => {
 
 app.get("/findTweetById", (req, res) => {
   //axios request to twitter api
-  request(
-    // "https://twitter.com",
-    {
-      uri:
-        "https://api.twitter.com/1.1/statuses/show.json?id=210462857140252672",
-      headers: {
-        Authorization:
-          "Bearer AAAAAAAAAAAAAAAAAAAAAOhU%2FgAAAAAAOommBQrmFMmuKX1B5xj2RdN%2Fc7g%3DBoLa0hJimDvFXAcnY36Rcs7T4idOP5g6Xr2h7F5lMHOv4m5whl"
-      }
+  request({
+    uri: "https://api.twitter.com/1.1/statuses/show.json?id=210462857140252672",
+    headers: {
+      Authorization: process.env.BEARER_TOKEN
     }
-  )
+  })
     .then(res => {
       console.log(res);
       return res.json();
     })
     .catch(err => console.log("ERR:", err));
+});
+
+app.post("/search", (req, res) => {
+  //this should always search for tweets from the logged in user
+  //search in uploaded file
+  let matches = [];
+  for (let i = 0; i < tweets.length; i++) {
+    if (tweets[i]["full_text"]) {
+      if (tweets[i]["full_text"].includes(req.body.keyword)) {
+        matches.push(tweets[i]);
+      }
+    } else if (tweets[i]["text"]) {
+      if (tweets[i]["text"].includes(req.body.keyword)) {
+        matches.push(tweets[i]);
+      }
+    }
+  }
+  res.send({ success: "true", matches: matches });
 });
 
 app.post("/deleteTweets", (req, res) => {
@@ -55,8 +68,7 @@ app.post("/deleteTweets", (req, res) => {
       uri: `https://api.twitter.com/1.1/statuses/destroy/:${id}.json`,
       method: "POST",
       headers: {
-        Authorization:
-          "Bearer AAAAAAAAAAAAAAAAAAAAAOhU%2FgAAAAAAOommBQrmFMmuKX1B5xj2RdN%2Fc7g%3DBoLa0hJimDvFXAcnY36Rcs7T4idOP5g6Xr2h7F5lMHOv4m5whl"
+        Authorization: process.env.BEARER_TOKEN
       }
     }).then(res => console.log(res));
   }

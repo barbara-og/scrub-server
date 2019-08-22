@@ -47,3 +47,31 @@ function readVal(keyString, split) {
   //     //     })
   //     .catch(err => console.log("ERROR", err));
   // }
+
+
+
+  app.post("/search", (req, res) => {
+  //this should always search for tweets from the logged in user
+  // request
+  //   .post(
+  //     "https://api.twitter.com/1.1/tweets/search/30day/:scru6dev.json?q=remember%20(from%3Abinazir_)&src=typed_query",
+  //     // "https://api.twitter.com/1.1/tweets/search/30day/:scru6dev.json",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: process.env.BEARER_TOKEN
+  //       }
+  //       // oauth: {
+  //       //   token: process.env.ACCESS_TOKEN,
+  //       //   token_secret: process.env.ACCESS_TOKEN_SECRET
+  //       // }
+  //       // body: JSON.stringify({ query })
+  //     }
+  //   )
+  //   .then(res => {
+  //     return res.send(res);
+  //   })
+  //   .catch(err => {
+  //     return res.status(500).send(err);
+  //   });
+});
